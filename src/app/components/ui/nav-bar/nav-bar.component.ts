@@ -26,11 +26,6 @@ export class NavBarComponent implements OnInit {
     this.auth.logout();
   }
 
-  navigateToDashboard() {
-    // const role = this.authService?.userData?.auth?.role
-    // role ? this.router.navigate([`/dashboard/${role}`]) : this.authService.logout()
-  }
-
   toggleCollapse() {
     if (window.innerWidth <= 991) {
       this.navbarCollapsed = !this.navbarCollapsed;

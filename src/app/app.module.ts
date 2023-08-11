@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/ui/nav-bar/nav-bar.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { AuthService } from './core/services/auth.service';
+import { AuthGuard } from './core/guards/auth.guard';
+import { DeAuthGuard } from './core/guards/de-auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +28,8 @@ import { AuthService } from './core/services/auth.service';
     }),
   ],
   providers: [
+    AuthGuard,
+    DeAuthGuard,
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RespondInterceptor, multi: true },
