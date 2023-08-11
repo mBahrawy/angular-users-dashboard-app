@@ -8,18 +8,18 @@ import { Observable } from 'rxjs';
 export class HttpService {
   constructor(private http: HttpClient) {}
 
-  postRequest(path: string, data?: unknown): Observable<unknown> {
-    return this.http.post(path, data);
+  postRequest<T>(path: string, data?: unknown): Observable<T> {
+    return this.http.post<T>(path, data)
   }
 
-  getRequest(path: string): Observable<unknown> {
-    return this.http.get(path);
+  getRequest<T>(path: string): Observable<T> {
+    return this.http.get<T>(path);
   }
 
-  putRequest(path: string, data?: unknown): Observable<unknown> {
-    return this.http.put(path, data);
+  putRequest<T>(path: string, data?: unknown): Observable<T> {
+    return this.http.put<T>(path, data);
   }
-  deleteRequest(path: string, data?: unknown): Observable<unknown> {
-    return this.http.put(path, data);
+  deleteRequest<T>(path: string, data?: unknown): Observable<T> {
+    return this.http.put<T>(path, data);
   }
 }

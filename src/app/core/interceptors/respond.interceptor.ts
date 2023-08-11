@@ -7,9 +7,11 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { catchError, Observable, tap, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class RespondInterceptor implements HttpInterceptor {
+  constructor(private toastr: ToastrService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -17,14 +19,17 @@ export class RespondInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        let errorMsg = '';
-        if (error.error instanceof ErrorEvent) {
-          console.log(`Error: ${error.error.message}`);
-        } else {
-          // Other errors
-          errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
-          console.log(errorMsg);
+        let errorMsg = 'Something wrong happnened.';
+
+        if (error.status === 400) {
+          // console.log(error.error);
+          this.toastr.error(error.error.error);
+          return throwError(error.error.error);
         }
+
+        // Default error handling
+        // console.log(error);
+        this.toastr.error(errorMsg);
         return throwError(errorMsg);
       })
     );
