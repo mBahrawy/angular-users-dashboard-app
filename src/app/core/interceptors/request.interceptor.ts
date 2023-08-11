@@ -25,7 +25,7 @@ export class RequestInterceptor implements HttpInterceptor {
       url: `${this.baseUrl}/${request.url}`,
       setHeaders: {
         'Content-Type': 'application/json',
-        ...(this.auth.getToken() && {'Authorization': `Bearer ${this.auth.getToken()}`}),
+        ...(this.auth.getToken() && {'Authorization': `${this.auth.getToken()}`}),
       },
     });
 

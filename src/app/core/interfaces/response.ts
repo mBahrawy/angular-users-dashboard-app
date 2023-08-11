@@ -3,7 +3,7 @@ export interface Response<T> {
   per_page: number;
   total: number;
   total_pages: number;
-  data: T[];
+  data: T;
   support: Support;
 }
 
