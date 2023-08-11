@@ -1,35 +1,32 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RespondInterceptor } from './core/interceptors/respond.interceptor';
 import { RequestInterceptor } from './core/interceptors/request.interceptor';
+import { RespondInterceptor } from './core/interceptors/respond.interceptor';
 
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { CommonModule } from '@angular/common';
+import { NavBarComponent } from './components/ui/nav-bar/nav-bar.component';
+import { SharedModule } from './modules/shared/shared.module';
+import { AuthService } from './core/services/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    CommonModule,
-    BrowserModule,
+    SharedModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule, // required animations module
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       closeButton: true,
       progressBar: true,
-    }), // ToastrModule added
+    }),
   ],
   providers: [
+    AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RespondInterceptor, multi: true },
   ],

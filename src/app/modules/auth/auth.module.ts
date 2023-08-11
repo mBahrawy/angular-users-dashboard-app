@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { AuthRoutingModule } from './auth-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { SharedModule } from '../shared/shared.module';
+import { AuthRoutingModule } from './auth-routing.module';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -12,9 +11,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
     LoginComponent
   ],
   imports: [
-    ReactiveFormsModule,
-    FormsModule,
-    CommonModule,
+    SharedModule,
     AuthRoutingModule,
   ],
   providers: [

@@ -1,28 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  backendError = '';
+  constructor(private auth: AuthService, private router: Router) {}
 
-  constructor(private auth: AuthService, private route: ActivatedRoute) {}
-
-  justRegisteredEmail!: string;
   loginForm!: FormGroup;
 
   ngOnInit(): void {
-    this.justRegisteredEmail =
-      this.route.snapshot.queryParamMap.get('email') || '';
     this.loginForm = new FormGroup({
-      email: new FormControl(this.justRegisteredEmail, [
-        Validators.email,
-        Validators.required,
-      ]),
+      email: new FormControl(null, [Validators.email, Validators.required]),
       password: new FormControl('', Validators.required),
     });
   }
@@ -35,10 +27,11 @@ export class LoginComponent implements OnInit {
       });
     } else {
       // Form is validated
-      this.auth.login(
-        this.loginForm.value.email,
-        this.loginForm.value.password
-      ).subscribe();
+      this.auth
+        .login(this.loginForm.value.email, this.loginForm.value.password)
+        .subscribe(() => {
+          this.router.navigate(['/users']);
+        });
     }
   }
 }

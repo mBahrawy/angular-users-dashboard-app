@@ -8,11 +8,15 @@ import {
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../services/auth.service';
 
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
   baseUrl: string = environment.baseUrl;
+
+  constructor(private auth: AuthService) { }
+
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
@@ -21,6 +25,7 @@ export class RequestInterceptor implements HttpInterceptor {
       url: `${this.baseUrl}/${request.url}`,
       setHeaders: {
         'Content-Type': 'application/json',
+        ...(this.auth.getToken() && {'Authorization': `Bearer ${this.auth.getToken()}`}),
       },
     });
 
