@@ -14,9 +14,10 @@ import { AuthService } from './core/services/auth.service';
 import { AuthGuard } from './core/guards/auth.guard';
 import { DeAuthGuard } from './core/guards/de-auth.guard';
 import { UsersService } from './core/services/users.service';
+import { PageNotFoundComponent } from './components/views/page-not-found/page-not-found.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     SharedModule,
     AppRoutingModule,
