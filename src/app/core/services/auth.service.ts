@@ -5,15 +5,10 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  private tokenSubject: BehaviorSubject<string | null>;
-  public token: Observable<string | null>;
+  isAuth$!: BehaviorSubject<boolean>;
 
   constructor(private http: HttpService, private router: Router) {
-    this.tokenSubject = new BehaviorSubject<string | null>(this.getToken());
-    this.token = this.tokenSubject.asObservable();
-  }
-  isLoggedIn() {
-    return !!this.tokenSubject.value;
+    this.isAuth$ = new BehaviorSubject<boolean>(!!this.getToken());
   }
 
   login(email: string, password: string) {
@@ -21,8 +16,9 @@ export class AuthService {
       .postRequest<{ token: string }>('login', { email, password })
       .pipe(
         tap((res) => {
-          res?.token && this.tokenSubject.next(res.token);
-          res?.token && localStorage.setItem('token', res.token);
+          if (!res?.token) return;
+          this.isAuth$.next(true);
+          localStorage.setItem('token', res.token);
         })
       );
   }
@@ -33,7 +29,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    this.tokenSubject.next(null);
+    this.isAuth$.next(false);
     this.router.navigate(['/login']);
   }
 }

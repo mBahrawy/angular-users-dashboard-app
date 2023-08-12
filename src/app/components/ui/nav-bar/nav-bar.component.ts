@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
@@ -7,19 +6,10 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss'],
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent {
   public navbarCollapsed = true;
-  isLoggedIn!: boolean;
 
-  constructor(private auth: AuthService, private router: Router) {
-    this.auth.token.subscribe((token) => (this.isLoggedIn = !!token));
-  }
-
-  ngOnInit(): void {
-    this.auth.token.subscribe((token) => {
-      console.log(token);
-    });
-  }
+  constructor(public auth: AuthService,) {}
 
   logout() {
     this.auth.logout();
