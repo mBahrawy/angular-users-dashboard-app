@@ -2,3 +2,19 @@
   max-height: calc(100vh + -250px);
   overflow-y: auto;
 }
+
+select, ngb-pagination {
+  height: 40px;
+}
+
+.text-left {
+  text-align: left;
+}
+
+
+.avatar-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}

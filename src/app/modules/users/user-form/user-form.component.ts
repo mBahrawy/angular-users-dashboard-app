@@ -8,11 +8,11 @@ type FormType = 'create' | 'edit';
 const nameRegex = /^[a-z ,.'-]+$/i;
 
 @Component({
-  selector: 'app-users-form',
-  templateUrl: './users-form.component.html',
-  styleUrls: ['./users-form.component.scss'],
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html',
+  styleUrls: ['./user-form.component.scss'],
 })
-export class UsersFormComponent implements OnInit {
+export class UserFormComponent implements OnInit {
   userData!: User;
   formType: FormType = 'create';
   userForm!: FormGroup;
@@ -58,7 +58,7 @@ export class UsersFormComponent implements OnInit {
       return;
     }
 
-    // Creating form data to collect all values with the image file, this is the proper way to submit the form
+    // Creating formData instance to collect all values with the image file, this is the proper way to submit the form
     // but the API have a different interface to send the data
     /*
       const formData = new FormData();
@@ -68,20 +68,21 @@ export class UsersFormComponent implements OnInit {
       formData.append('email', this.userForm.value.email);
     */
 
-
+    // I used this static data because the enpoint accept diffrant user data interface
     const dummyPostData = {
-      "name": "morpheus",
-      "job": "leader"
-    }
+      name: 'morpheus',
+      job: 'leader',
+    };
 
-    this.formType === "create" && this.users.new(dummyPostData).subscribe(() => {
-      this.router.navigate(['/users']);
-    });
+    this.formType === 'create' &&
+      this.users.new(dummyPostData).subscribe(() => {
+        this.router.navigate(['/users']);
+      });
 
-    this.formType === "edit" && this.users.edit(dummyPostData, this.userData.id).subscribe(() => {
-      this.router.navigate(['/users']);
-    });
-
+    this.formType === 'edit' &&
+      this.users.edit(dummyPostData, this.userData.id).subscribe(() => {
+        this.router.navigate(['/users']);
+      });
   }
 
   buildForm(firstName = '', lastName = '', avatar = '', email = '') {
@@ -109,7 +110,16 @@ export class UsersFormComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('id');
-    userId && this.getUser(userId);
-    userId && (this.formType = 'edit');
+
+    // In case if there is a user ID, this view will act as edit form
+    if (userId) {
+      this.formType = 'edit';
+      this.getUser(userId);
+      return;
+    }
+
+    // Otherwise, this view will act as create form
+    this.formType = 'create';
+    this.buildForm();
   }
 }

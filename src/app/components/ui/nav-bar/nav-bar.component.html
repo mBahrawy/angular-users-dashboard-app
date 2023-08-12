@@ -9,6 +9,7 @@
     <div class="collapse navbar-collapse" [ngbCollapse]="navbarCollapsed" id="navbarSupportedContent">
       <div class="navbar-nav w-100 justify-content-end">
         <a class="nav-item nav-link" *ngIf="isLoggedIn" [routerLink]="['/users']" (click)="toggleCollapse()">Users</a>
+        <a class="nav-item nav-link" *ngIf="isLoggedIn" [routerLink]="['/users/new']" (click)="toggleCollapse()">Create a new user</a>
         <a class="nav-item nav-link" *ngIf="!isLoggedIn" [routerLink]="['/login']"
           (click)="toggleCollapse()">Login</a>
         <a class="nav-item nav-link btn-link" *ngIf="isLoggedIn"

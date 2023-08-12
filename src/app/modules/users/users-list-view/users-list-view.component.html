@@ -1,28 +1,35 @@
 <div *ngIf="usersList && usersList.length" class="container mt-5">
-  <div class="row">
+
+  <div class="row col-12 p-0 m-0 mb-2">
+   <div class="d-flex justify-content-end p-0">
+    <button class="btn btn-sm btn-primary" [routerLink]="['/users/new']">Create a new user</button>
+   </div>
+
+  </div>
+  <div class="row p-2">
     <div class="col-12 card p-0">
 
       <div class="table-container">
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col"><div class="px-2">#</div> </th>
+              <th scope="col"><div class="px-2">Id</div> </th>
               <th scope="col">Avatar</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
-              <th scope="col">View</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let user of usersList">
               <td ><div class="px-2">{{ user.id }}</div> </td>
               <td>
-                <img [src]="user.avatar" class="me-2" style="width: 20px" />
+                <img [src]="user.avatar" class="me-2 avatar-thumb" />
 
               </td>
               <td>{{ user.first_name }} {{ user.last_name }}</td>
               <td>{{ user.email}}</td>
-              <td><button class="btn btn-sm btn-link w-100" [routerLink]="user.id.toString()">View</button></td>
+              <td><button class="btn btn-sm btn-link w-100 text-left" [routerLink]="user.id.toString()">View</button></td>
             </tr>
           </tbody>
         </table>
