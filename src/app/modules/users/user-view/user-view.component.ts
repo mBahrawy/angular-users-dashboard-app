@@ -28,7 +28,7 @@ export class UserViewComponent implements OnInit {
   }
 
   getUser() {
-    const userId = this.route.snapshot.paramMap.get('id');
+    const userId = this.route.snapshot?.paramMap?.get('id');
     userId &&
       this.users.single(userId).subscribe((res) => (this.userData = res));
   }

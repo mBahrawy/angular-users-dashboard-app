@@ -7,6 +7,4 @@ import { Subject } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'parents-assesment-app';
-}
+export class AppComponent {}

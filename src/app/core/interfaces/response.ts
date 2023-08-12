@@ -4,7 +4,7 @@ export interface Response<T> {
   total: number;
   total_pages: number;
   data: T;
-  support: Support;
+  support?: Support | null;
 }
 
 export interface Support {

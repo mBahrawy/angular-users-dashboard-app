@@ -109,7 +109,7 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = this.route.snapshot.paramMap.get('id');
+    const userId = this.route.snapshot?.paramMap?.get('id');
 
     // In case if there is a user ID, this view will act as edit form
     if (userId) {

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { HttpService } from './http.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject, tap } from 'rxjs';
+import { HttpService } from './http.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   isAuth$!: BehaviorSubject<boolean>;
 
