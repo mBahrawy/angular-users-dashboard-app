@@ -8,16 +8,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './components/ui/nav-bar/nav-bar.component';
-import { SharedModule } from './modules/shared/shared.module';
-import { AuthService } from './core/services/auth.service';
+import { LoaderComponent } from './components/ui/loader/loader.component';
+import { PageNotFoundComponent } from './components/views/page-not-found/page-not-found.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { DeAuthGuard } from './core/guards/de-auth.guard';
+import { LoaderInterceptor } from './core/interceptors/loader.interceptor';
+import { AuthService } from './core/services/auth.service';
 import { UsersService } from './core/services/users.service';
-import { PageNotFoundComponent } from './components/views/page-not-found/page-not-found.component';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent],
+  declarations: [AppComponent, PageNotFoundComponent, LoaderComponent],
   imports: [
     SharedModule,
     AppRoutingModule,
@@ -36,6 +37,7 @@ import { PageNotFoundComponent } from './components/views/page-not-found/page-no
     UsersService,
     { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: RespondInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

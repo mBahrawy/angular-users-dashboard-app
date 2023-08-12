@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
@@ -38,6 +38,6 @@ export class RespondInterceptor implements HttpInterceptor {
         this.toastr.error(errorMsg);
         return throwError(errorMsg);
       })
-    );
+    ) ;
   }
 }
