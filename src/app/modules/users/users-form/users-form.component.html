@@ -1,0 +1,136 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-12 card p-0">
+      <div class="card-header d-flex justify-content-between">
+        <h5><span class="text-capitalize">{{formType}}</span> user</h5>
+        <button class="btn btn-sm btn-link" [routerLink]="'/users'">View all users</button>
+      </div>
+      <form *ngIf="userForm" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="mt-4 card-body">
+          <div class="row">
+            <div class="col-md-4 d-flex flex-column justify-content-end">
+
+
+
+
+              <div *ngIf="imageURL">
+                <img [src]="imageURL" [alt]="userForm.value.name" class="img-fluid w-100 avatar-img">
+              </div>
+
+
+              <input id="avatar" type="file" accept="image/*" (change)="onImageChange($event)"class="d-none" formControlName="avatar" />
+
+
+             <div class="d-flex justify-content-center mb-3">
+              <label for="avatar" class="btn btn-link btn-sm">{{!!userForm.get('avatar')?.value ? "Replace" :
+                "Upload Image"}}</label>
+              <button *ngIf="imageURL" for="avatar" (click)="removeAvatar()" class="btn btn-link btn-sm">Remove</button>
+             </div>
+
+
+            </div>
+            <div class="col-md-8">
+              <ul class="list-group">
+
+
+                <li class="list-group-item d-flex ">
+                  <div class="input-name d-flex align-items-center">
+                    <strong>First name</strong>
+                  </div>
+
+                  <div>
+                    <input formControlName="firstName" type="text" class="form-control" [ngClass]="{'is-invalid':
+                      userForm.get('firstName')?.touched &&
+                      (userForm.get('firstName')?.hasError('firstName') ||
+                      userForm.get('firstName')?.hasError('required')
+                    )}" id="firstName" placeholder="Enter your firstName">
+
+                    <div *ngIf="
+                  userForm.get('firstName')?.hasError('firstName') &&
+                  !userForm.get('firstName')?.hasError('required')" class="invalid-feedback">Please enter a valid first
+                      name
+                    </div>
+
+                    <div *ngIf="
+                userForm.get('firstName')?.touched &&
+                  (userForm.get('firstName')?.hasError('required') &&
+                  !userForm.get('firstName')?.hasError('firstName'))" class="invalid-feedback">First name is required
+                    </div>
+
+                  </div>
+
+                </li>
+
+
+
+
+                <li class="list-group-item d-flex">
+                  <div class="input-name d-flex align-items-center">
+                    <strong>Last name</strong>
+                  </div>
+
+                  <div>
+                    <input formControlName="lastName" type="text" class="form-control" [ngClass]="{'is-invalid':
+                      userForm.get('lastName')?.touched &&
+                      (userForm.get('lastName')?.hasError('lastName') ||
+                      userForm.get('lastName')?.hasError('required')
+                    )}" id="lastName" placeholder="Enter your lastName">
+
+                    <div *ngIf="
+                  userForm.get('lastName')?.hasError('lastName') &&
+                  !userForm.get('lastName')?.hasError('required')" class="invalid-feedback">Please enter a valid last
+                      name
+                    </div>
+
+                    <div *ngIf="
+                userForm.get('lastName')?.touched &&
+                  (userForm.get('lastName')?.hasError('required') &&
+                  !userForm.get('lastName')?.hasError('lastName'))" class="invalid-feedback">last name is required
+                    </div>
+
+                  </div>
+
+                </li>
+
+
+
+
+                <li class="list-group-item d-flex">
+                  <div class="input-name d-flex align-items-center">
+                    <strong>Email</strong>
+                  </div>
+
+                  <div>
+                    <input formControlName="email" type="text" class="form-control" [ngClass]="{'is-invalid':
+                      userForm.get('email')?.touched &&
+                      (userForm.get('email')?.hasError('email') ||
+                      userForm.get('email')?.hasError('required')
+                    )}" id="email" placeholder="Enter your email">
+
+                    <div *ngIf="
+                  userForm.get('email')?.hasError('email') &&
+                  !userForm.get('email')?.hasError('required')" class="invalid-feedback">Please enter a valid email
+                    </div>
+
+                    <div *ngIf="
+                userForm.get('email')?.touched &&
+                  (userForm.get('email')?.hasError('required') &&
+                  !userForm.get('email')?.hasError('email'))" class="invalid-feedback">Email is required</div>
+
+                  </div>
+
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer justify-content-end d-flex">
+          <button class="btn btn-primary mx-2" type="submit">Save</button>
+          <button class="btn btn-secondary mx-2" [routerLink]="'..'">Cancel</button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

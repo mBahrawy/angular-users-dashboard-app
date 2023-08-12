@@ -25,13 +25,13 @@ export class LoginComponent implements OnInit {
         const control = this.loginForm.get(field);
         control?.markAsTouched({ onlySelf: true });
       });
-    } else {
-      // Form is validated
-      this.auth
-        .login(this.loginForm.value.email, this.loginForm.value.password)
-        .subscribe(() => {
-          this.router.navigate(['/users']);
-        });
+      return;
     }
+    // Form is validated
+    this.auth
+      .login(this.loginForm.value.email, this.loginForm.value.password)
+      .subscribe(() => {
+        this.router.navigate(['/users']);
+      });
   }
 }

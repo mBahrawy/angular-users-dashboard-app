@@ -21,6 +21,12 @@ export class RespondInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         let errorMsg = 'Something wrong happnened.';
 
+        if (error.status === 404) {
+          // console.log(error.error);
+          this.toastr.error("The requested resource was not found.");
+          return throwError(error.error.error);
+        }
+
         if (error.status === 400) {
           // console.log(error.error);
           this.toastr.error(error.error.error);
