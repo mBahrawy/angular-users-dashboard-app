@@ -19,7 +19,7 @@ export class HttpService {
   putRequest<T>(path: string, data?: unknown): Observable<T> {
     return this.http.put<T>(path, data);
   }
-  deleteRequest<T>(path: string, data?: unknown): Observable<T> {
-    return this.http.put<T>(path, data);
+  deleteRequest<T>(path: string): Observable<T> {
+    return this.http.delete<T>(path);
   }
 }

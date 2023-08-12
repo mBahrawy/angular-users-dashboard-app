@@ -1,13 +1,30 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NavBarComponent } from 'src/app/components/ui/nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
-import { NgbModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { LoaderComponent } from 'src/app/components/ui/loader/loader.component';
+import { NavBarComponent } from 'src/app/components/ui/nav-bar/nav-bar.component';
+import {
+  NgbModule,
+  NgbModalModule,
+  NgbActiveModal,
+} from '@ng-bootstrap/ng-bootstrap';
+import { DeleteUserModalComponent } from 'src/app/components/ui/modals/delete-user-modal/delete-user-modal.component';
 
 @NgModule({
-  declarations: [NavBarComponent,],
-  imports: [CommonModule, NgbModule, RouterModule],
-  exports: [CommonModule, FormsModule, ReactiveFormsModule, NgbModule, NavBarComponent, RouterModule],
+  declarations: [NavBarComponent, DeleteUserModalComponent, LoaderComponent],
+  imports: [CommonModule, NgbModule, NgbModalModule, RouterModule],
+  providers: [NgbActiveModal],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    NgbModalModule,
+    NavBarComponent,
+    RouterModule,
+    DeleteUserModalComponent,
+    LoaderComponent,
+  ],
 })
 export class SharedModule {}

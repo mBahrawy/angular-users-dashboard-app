@@ -34,4 +34,10 @@ export class UsersService {
       .postRequest(`users`, user)
       .pipe(tap(() => this.toaster.success('User was created.')));
   }
+
+  distroy(userId: number) {
+    return this.http
+    .deleteRequest(`users/${userId}`)
+    .pipe(tap(() => this.toaster.success('User was deleted.')));
+  }
 }

@@ -1,3 +1,4 @@
+
 <div *ngIf="userData" class="container mt-5">
   <div class="row">
     <div class="col-12 card p-0">
@@ -22,7 +23,7 @@
       </div>
       <div class="card-footer justify-content-end d-flex">
         <a routerLink="edit" class="btn btn-primary mx-2">Edit</a>
-        <a routerLink="" class="btn btn-danger">Delete</a>
+        <a (click)="openModal()" class="btn btn-danger">Delete</a>
       </div>
     </div>
   </div>

@@ -95,7 +95,7 @@ export class UserFormComponent implements OnInit {
         Validators.pattern(nameRegex),
         Validators.required,
       ]),
-      avatar: new FormControl(avatar, [Validators.required]),
+      avatar: new FormControl(avatar),
       email: new FormControl(email, [Validators.email, Validators.required]),
     });
   }

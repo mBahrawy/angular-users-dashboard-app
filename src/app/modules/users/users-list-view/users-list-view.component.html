@@ -29,7 +29,14 @@
               </td>
               <td>{{ user.first_name }} {{ user.last_name }}</td>
               <td>{{ user.email}}</td>
-              <td><button class="btn btn-sm btn-link w-100 text-left" [routerLink]="user.id.toString()">View</button></td>
+              <td>
+                <div class="d-flex">
+
+                <button class="btn btn-sm px-1 btn-link w-100 text-left" [routerLink]="user.id.toString()">View</button>
+                <button class="btn btn-sm px-1 btn-link text-danger w-100 text-left" (click)="openModal(user.id)">Delete</button>
+
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>
