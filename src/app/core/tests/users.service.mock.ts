@@ -32,15 +32,15 @@ export class UsersServiceMock {
     return of(mockUser);
   }
 
-  edit(user: UserFormData, userId: number): Observable<any> {
+  edit(user: UserFormData, userId: number): Observable<unknown> {
     return of({});
   }
 
-  new(user: UserFormData): Observable<any> {
+  new(user: UserFormData): Observable<unknown> {
     return of({});
   }
 
-  distroy(userId: number): Observable<any> {
+  distroy(userId: number): Observable<unknown> {
     return of({});
   }
 }

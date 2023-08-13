@@ -7,7 +7,7 @@ export interface UserState {
   users: User[];
   currentUser: User | null;
   paginationData: PaginationData;
-  error: any;
+  error: unknown;
 }
 
 export const initialState: UserState = {

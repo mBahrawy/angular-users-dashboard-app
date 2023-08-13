@@ -8,7 +8,7 @@ export class AuthServiceMock {
 
   constructor(private router: Router) {}
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string, password: string): Observable<{token : string}> {
     // Simulate a successful login
     this.isAuth$.next(true);
     return of({ token: 'mocked-token' });
