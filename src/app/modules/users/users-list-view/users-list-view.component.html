@@ -1,4 +1,8 @@
-<div *ngIf="usersList && usersList.length" class="container mt-5">
+<div *ngIf="error$ | async as error" class="error">
+  An error occurred: {{ error }}
+</div>
+
+<div *ngIf="(users$ | async) && (users$ | async)?.length" class="container mt-5">
 
   <div class="row col-12 p-0 m-0 mb-2">
    <div class="d-flex justify-content-end p-0">
@@ -21,7 +25,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of usersList">
+            <tr *ngFor="let user of (users$ | async)">
               <td ><div class="px-2">{{ user.id }}</div> </td>
               <td>
                 <img [src]="user.avatar" class="me-2 avatar-thumb" />
@@ -43,7 +47,7 @@
       </div>
 
       <div class="card-footer d-flex justify-content-between p-2">
-        <ngb-pagination [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+        <ngb-pagination *ngIf="collectionSize" [pageSize]="pageSize" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
           (pageChange)="getUsers(page, pageSize)">
         </ngb-pagination>
 

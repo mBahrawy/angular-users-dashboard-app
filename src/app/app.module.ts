@@ -16,6 +16,12 @@ import { AuthService } from './core/services/auth.service';
 import { UsersService } from './core/services/users.service';
 import { SharedModule } from './modules/shared/shared.module';
 import { ModalsService } from './core/services/modals.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { userReducer } from './core/state/users/user.reducer';
+import { UserEffects } from './core/state/users/user.effects';
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent ],
@@ -29,6 +35,9 @@ import { ModalsService } from './core/services/modals.service';
       closeButton: true,
       progressBar: true,
     }),
+    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ user: userReducer }),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [
     AuthGuard,
