@@ -1,5 +1,4 @@
-
-<div *ngIf="userData" class="container mt-5">
+<div *ngIf="(userData$ | async)" class="container mt-5">
   <div class="row">
     <div class="col-12 card p-0">
       <div class="card-header d-flex justify-content-between">
@@ -9,14 +8,14 @@
       <div class="my-4 card-body">
         <div class="row">
           <div class="col-md-4">
-            <img [src]="userData.avatar" class="img-fluid w-100 avatar-img" alt="User Avatar">
+            <img [src]="(userData$ | async)?.avatar" class="img-fluid w-100 avatar-img" alt="User Avatar">
           </div>
           <div class="col-md-8">
             <ul class="list-group">
-              <li class="list-group-item"><strong>ID:</strong> {{ userData.id }}</li>
-              <li class="list-group-item"><strong>Email:</strong> {{ userData.email }}</li>
-              <li class="list-group-item"><strong>First Name:</strong> {{ userData.first_name }}</li>
-              <li class="list-group-item"><strong>Last Name:</strong> {{ userData.last_name }}</li>
+              <li class="list-group-item"><strong>ID:</strong> {{ (userData$ | async)?.id }}</li>
+              <li class="list-group-item"><strong>Email:</strong> {{ (userData$ | async)?.email }}</li>
+              <li class="list-group-item"><strong>First Name:</strong> {{ (userData$ | async)?.first_name }}</li>
+              <li class="list-group-item"><strong>Last Name:</strong> {{ (userData$ | async)?.last_name }}</li>
             </ul>
           </div>
         </div>

@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Response } from '../interfaces/response';
+import { PaginatedResponse } from '../interfaces/response';
 import { User, UserFormData } from '../interfaces/user';
 
 @Injectable()
 export class UsersServiceMock {
   constructor() {}
 
-  index(page: number, per_page: number): Observable<Response<User[]>> {
+  index(page: number, per_page: number): Observable<PaginatedResponse<User[]>> {
     const mockUsers: User[] = [
       // Create mock user objects as needed
     ];
-    const mockResponse: Response<User[]> = {
+    const mockResponse: PaginatedResponse<User[]> = {
       data: mockUsers,
       total: mockUsers.length,
       per_page: per_page,

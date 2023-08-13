@@ -38,6 +38,7 @@ import { UserEffects } from './core/state/users/user.effects';
     StoreModule.forRoot({}, {}),
     StoreModule.forRoot({ user: userReducer }),
     EffectsModule.forRoot([UserEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [
     AuthGuard,

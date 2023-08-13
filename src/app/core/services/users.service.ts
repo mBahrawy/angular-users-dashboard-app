@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
-import { Response } from '../interfaces/response';
+import { PaginatedResponse, Response } from '../interfaces/response';
 import { User, UserFormData } from '../interfaces/user';
 import { map, tap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ export class UsersService {
   constructor(private http: HttpService, private toaster: ToastrService) {}
 
   index(page: number, per_page: number) {
-    return this.http.getRequest<Response<User[]>>(
+    return this.http.getRequest<PaginatedResponse<User[]>>(
       `users?page=${page}&per_page=${per_page}`
     );
   }
@@ -35,7 +35,7 @@ export class UsersService {
       .pipe(tap(() => this.toaster.success('User was created.')));
   }
 
-  distroy(userId: number) {
+  distroy(userId: string) {
     return this.http
     .deleteRequest(`users/${userId}`)
     .pipe(tap(() => this.toaster.success('User was deleted.')));

@@ -37,7 +37,7 @@
                 <div class="d-flex">
 
                 <button class="btn btn-sm px-1 btn-link w-100 text-left" [routerLink]="user.id.toString()">View</button>
-                <button class="btn btn-sm px-1 btn-link text-danger w-100 text-left" (click)="openModal(user.id)">Delete</button>
+                <button class="btn btn-sm px-1 btn-link text-danger w-100 text-left" (click)="openModal(user.id.toString())">Delete</button>
 
                 </div>
               </td>

@@ -14,9 +14,11 @@ export class UserEffects {
     private users: UsersService
   ) {}
 
-  loadUsers$ = createEffect(() =>
+  // For all users view componenet
+
+  loadAllUsers$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(userActions.loadUsers),
+      ofType(userActions.loadAllUsers),
       mergeMap((action) =>
         this.users.index(action.page, action.per_page).pipe(
           map((response) => {
@@ -30,9 +32,22 @@ export class UserEffects {
                 },
               })
             );
-            return userActions.loadUsersSuccess({ response });
+            return userActions.loadAllUsersSuccess({ response });
           }),
-          catchError((error) => of(userActions.loadUsersFailure({ error })))
+          catchError((error) => of(userActions.loadAllUsersFailure({ error })))
+        )
+      )
+    )
+  );
+
+  // For single view componenet
+  loadSingleUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(userActions.loadSingleUser),
+      mergeMap((action) =>
+        this.users.single(action.userId).pipe(
+          map((response) => userActions.loadAllUsersuccess({ response })),
+          catchError((error) => of(userActions.loadAllUsersFailure({ error })))
         )
       )
     )
