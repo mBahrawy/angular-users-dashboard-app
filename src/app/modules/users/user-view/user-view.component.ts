@@ -1,12 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { DeleteUserModalComponent } from 'src/app/components/ui/modals/delete-user-modal/delete-user-modal.component';
 import { User } from 'src/app/core/interfaces/user';
 import { ModalsService } from 'src/app/core/services/modals.service';
-import { UsersService } from 'src/app/core/services/users.service';
 import { clearSingleUser, loadSingleUser } from 'src/app/core/state/users/user.actions';
 import { selectUser } from 'src/app/core/state/users/user.selectors';
 
@@ -28,7 +25,7 @@ export class UserViewComponent implements OnInit, OnDestroy {
 
   openModal() {
     if(!this.userId) return;
-    this.modals.opendDeletUserModal(this.userId, () => {
+    this.modals.openDeletUserModal(this.userId, () => {
       this.router.navigate(['/users']);
     });
   }

@@ -9,7 +9,7 @@ import { UsersService } from './users.service';
 export class ModalsService {
   constructor(private users: UsersService, private modalService: NgbModal) {}
 
-  opendDeletUserModal(userId: string, callback: () => void) {
+  openDeletUserModal(userId: string, callback: () => void) {
     const modalRef = this.modalService.open(DeleteUserModalComponent, { centered: true });
 
     modalRef.result.then(

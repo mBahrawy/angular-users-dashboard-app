@@ -13,8 +13,8 @@ import { selectError, selectPaginationData, selectUsers } from 'src/app/core/sta
   styleUrls: ['./users-list-view.component.scss'],
 })
 export class UsersListViewComponent implements OnInit, OnDestroy {
-  page!: number;
-  pageSize!: number;
+  page = 1;
+  pageSize = 5;
   collectionSize!: number | null;
   usersList!: User[];
 
@@ -25,7 +25,7 @@ export class UsersListViewComponent implements OnInit, OnDestroy {
   constructor(private modals: ModalsService, private store: Store) {}
 
   openModal(userId: string) {
-    this.modals.opendDeletUserModal(userId, () => {
+    this.modals.openDeletUserModal(userId, () => {
       this.getUsers(this.page, this.pageSize);
     });
   }

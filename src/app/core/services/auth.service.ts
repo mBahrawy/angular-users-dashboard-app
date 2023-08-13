@@ -4,9 +4,10 @@ import { BehaviorSubject, tap } from 'rxjs';
 import { HttpService } from './http.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
+
   isAuth$!: BehaviorSubject<boolean>;
 
   constructor(private http: HttpService, private router: Router) {
