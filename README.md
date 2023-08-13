@@ -1,27 +1,35 @@
-# ParentsAssesmentApp
+# Angular Uers dashboard app (NGRX)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+I have created a simple web application that consumes a RESTful web service from [https://reqres.in/](https://reqres.in/) through the following endpoints:
 
-## Development server
+- Login and authentication (Login view)
+- Listing users (Users list view)
+- Viewing a single user (Single user view)
+- Creating a user (User creation view)
+- Deleting a user (User removal modal)
+- Updating a user (User updating view)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The application is built using Angular version 13, Angular NGRX as a state management system, and Bootstrap.
 
-## Code scaffolding
+## Implementation Details
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Built by Bootstrap, responsiveness tested and guaranteed.
+- Created table pagination and items length changer to improve app performance.
+- Created a full authentication system.
+- Created guarded and secured routes.
+- Separated common logic and components into a shared module.
+- Created lazy-loaded modules
+- Each action (login, create, update, delete) displays a success or failure message.
+- Used Redux (NGRX) was integrated for state management.
+- Created Unit tests for almost all components, guards, and services.
+- Created interfaces for strongly typing the app with genic types
 
-## Build
+## App Modules:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Auth module
+- Users module
+- Shared module
+  
+## Notes:
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+There was a small issue regarding the API that was provided (https://reqres.in/), it didn't provide a proper interface for posting user data, it was a different interface for getting user data the interfaces were not compatible with each other, so I sent a static data to complete the app flow.
